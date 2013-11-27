@@ -3,47 +3,40 @@ var url  = require('url');
 
 http.createServer(function(req, res) {
   var parsedUrlData = getParsedUrlData(req.url),
-      pathname = parsedUrlData.pathname.toLowerCase();
+      pathname      = parsedUrlData.pathname.toLowerCase(),
+      date          = new Date(parsedUrlData.variables.iso),
+      response;
 
   if (pathname === '/api/parsetime') {
-    handleParseTimeRequest(parsedUrlData, req, res);
+    response = parsedTime(date);
   }
   else if (pathname === '/api/unixtime') {
-    handleUnixTimeRequest(parsedUrlData, req, res);
+    response = unixTime(date);
   }
 
-  res.end();
+  if (response) {
+    res.writeHead(200, { 'Content-type': 'application/json'});
+    res.write(JSON.stringify(response));
+  }
+  else {
+    res.writeHead(404);
+    res.end();
+  }
+
 }).listen(8000);
 
-function handleUnixTimeRequest(parsedUrlData, req, res) {
-  var date         = getDateFromUrl(parsedUrlData),
-      responseData = {
-        unixtime: date.getTime()
-      };
-
-  handleApiTimeResponse(responseData, res);
+function unixTime(date) {
+  return {
+    unixtime: date.getTime()
+  }
 }
 
-function handleParseTimeRequest(parsedUrlData, req, res) {
-  var date         = getDateFromUrl(parsedUrlData),
-      responseData = {
-        hour: date.getHours(),
-        minute: date.getMinutes(),
-        second: date.getSeconds()
-      };
-
-  handleApiTimeResponse(responseData, res);
-}
-
-function getDateFromUrl(parsedUrlData) {
-  var ISOString = parsedUrlData.variables['iso'];
-
-  return new Date(ISOString);
-}
-
-function handleApiTimeResponse(responseData, res) {
-  res.writeHead(200, { 'Content-type': 'application/json'});
-  res.write(JSON.stringify(responseData));
+function parsedTime(date) {
+  return {
+    hour: date.getHours(),
+    minute: date.getMinutes(),
+    second: date.getSeconds()
+  }
 }
 
 function getParsedUrlData(urlStr) {
