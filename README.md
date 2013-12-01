@@ -1,5 +1,7 @@
-#learning node
+#learning node with nodeschool
 
-My solutions for learnyounode
+My solutions for [Node School][nodeschool] classes.
 
-official repo => [learnyounode](https://github.com/rvagg/learnyounode)
+Each level has its own folder.
+
+[nodeschool]: http://nodeschool.io/
