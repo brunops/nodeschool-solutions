@@ -7,6 +7,13 @@ function repeat(operation, num) {
 
 function trampoline(fn) {
   // You probably want to implement a trampoline!
+
+  var result = fn.apply(fn, arguments);
+  while (typeof result === 'function') {
+    result = result();
+  }
+
+  return result;
 }
 
 module.exports = function(operation, num) {
