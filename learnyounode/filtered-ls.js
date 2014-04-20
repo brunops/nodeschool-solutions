@@ -1,10 +1,9 @@
 var fs = require('fs');
+var path = require('path');
 
 fs.readdir(process.argv[2], function (err, list) {
-  var regex = new RegExp('\.' + process.argv[3] + '$');
-  
   list.forEach(function (filename) {
-    if (regex.test(filename)) {
+    if (path.extname(filename) === '.' + process.argv[3]) {
       console.log(filename);
     }
   });
