@@ -34,11 +34,9 @@ module.exports = function () {
   };
 
   return combine(
-    //process.openStdin(),
     split(),
     through(write, end),
     zlib.createGzip()
-    //process.stdout    
   );
 };
 
