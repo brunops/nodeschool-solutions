@@ -21,8 +21,6 @@ fs.readFile(process.argv[3], function (err, data) {
       op.value = params[2];
     }
 
-    console.log(op);
-
     return op;
   });
 
