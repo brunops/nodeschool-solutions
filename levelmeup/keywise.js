@@ -3,12 +3,19 @@ var data = require(process.argv[3]);
 
 var operations = [];
 data.forEach(function (entry) {
+  var key;
   if (entry.type === 'user') {
-    operations.push({ type: 'put', key: entry.name, value: entry });
+    key = entry.name;
   }
-  else if (entry.type === 'repo') {
-    operations.push({ type: 'put', key: entry.user + "!" + entry.name, value: entry });
+  else {
+    key = entry.user + "!" + entry.name;
   }
+
+  operations.push({
+    type: 'put',
+    key: key,
+    value: entry
+  });
 });
 
 db.batch(operations);
