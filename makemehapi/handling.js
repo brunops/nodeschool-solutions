@@ -7,7 +7,7 @@ server.route({
   method: 'GET',
   path: '/',
   handler: {
-    file: path.join(__dirname, 'index.html')
+    file: path.join(__dirname, 'public/index.html')
   }
 });
 
