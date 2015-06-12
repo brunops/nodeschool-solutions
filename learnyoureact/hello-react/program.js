@@ -8,8 +8,19 @@ app.engine('jsx', require('express-react-views').createEngine());
 
 require('node-jsx').install();
 
+var data = [
+  {
+    title: 'Shopping',
+    detail: process.argv[3]
+  },
+  {
+    title: 'Hair cut',
+    detail: process.argv[4]
+  }
+];
+
 app.use('/', function (req, res) {
-  res.render('index', '');
+  res.render('index', { data: data });
 });
 
 app.listen(app.get('port'), function () {
