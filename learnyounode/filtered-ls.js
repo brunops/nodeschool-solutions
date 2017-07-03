@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+let fs = require('fs');
+let path = require('path');
 
 fs.readdir(process.argv[2], (err, list) => {
   list.forEach((filename) => {

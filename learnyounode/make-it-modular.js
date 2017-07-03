@@ -1,7 +1,7 @@
-const filterDir = require('./filter-dir');
+let filterDir = require('./filter-dir');
 
-const dirPath = process.argv[2];
-const extension = process.argv[3];
+let dirPath = process.argv[2];
+let extension = process.argv[3];
 
 filterDir(dirPath, extension, (err, list) => {
   if (err) {
