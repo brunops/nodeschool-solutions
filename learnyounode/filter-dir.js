@@ -1,5 +1,5 @@
-let fs = require('fs');
-let path = require('path');
+var fs = require('fs');
+var path = require('path');
 
 module.exports = (dirPath, extension, cb) => {
   var filteredFiles = [];  
