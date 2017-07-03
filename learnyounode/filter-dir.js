@@ -1,15 +1,15 @@
-var fs = require('fs');
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
 
-module.exports = function (dirPath, extension, cb) {
+module.exports = (dirPath, extension, cb) => {
   var filteredFiles = [];  
 
-  fs.readdir(dirPath, function (err, list) {
+  fs.readdir(dirPath, (err, list) => {
     if (err) {
       return cb(err);
     }
 
-    list.forEach(function (file) {
+    list.forEach((file) => {
       if (path.extname(file) === '.' + extension) {
         filteredFiles.push(file);
       }
