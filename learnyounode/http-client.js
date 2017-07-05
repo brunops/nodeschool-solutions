@@ -2,10 +2,10 @@ var http = require('http');
 
 var url = process.argv[2];
 
-http.get(url, function (response) {
+http.get(url, (response) => {
   response.setEncoding('utf8');
 
-  response.on('data', function (data) {
+  response.on('data', (data) => {
     console.log(data);
   });
 });

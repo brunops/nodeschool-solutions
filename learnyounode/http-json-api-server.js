@@ -1,7 +1,7 @@
 var http = require('http');
 var url = require('url');
 
-http.createServer(function (req, res) {
+http.createServer((req, res) => {
   var urlObj = url.parse(req.url, true),
       pathname = urlObj.pathname,
       strtime = urlObj.query.iso,
@@ -26,17 +26,17 @@ http.createServer(function (req, res) {
 }).listen(process.argv[2]);
 
 
-function getUnixTimestamp(strtime) {
+var getUnixTimestamp = (strtime) => {
   return {
     unixtime: getTimestamp(strtime)
   };  
 }
 
-function getTimestamp(strtime) {
+var getTimestamp = (strtime) => {
   return Date.parse(strtime);
 }
 
-function getTimeObj(strtime) {
+var getTimeObj = (strtime) => {
   var date = new Date(getTimestamp(strtime));
 
   return {
