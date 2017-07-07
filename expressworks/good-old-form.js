@@ -2,7 +2,7 @@ var express = require('express');
 
 var app = express();
 
-app.use(express.urlencoded());
+app.use(require('body-parser').urlencoded());
 app.post('/form', (req, res) => {
   res.end(req.body.str.split('').reverse().join(''));
 });
